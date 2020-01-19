@@ -1,0 +1,46 @@
+﻿<Window x:Class="AutoCADPolyline.PolylineWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AutoCADPolyline"
+            WindowStyle="ToolWindow"
+            SizeToContent="WidthAndHeight"
+            Title="     Полилиния">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Параметры полилинии" FontSize="15" HorizontalAlignment="Center"/>
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                <Button Name="btnColor" Content="Цвет" Width="100" Height="30" FontSize="15" HorizontalAlignment="Left" Margin="20 20 20 20" Click="BtnColor_Click" />
+                <Rectangle Name="rectColor" Stroke="Black" StrokeThickness="1" Width="40" Height="40"/>
+            </StackPanel>
+            <CheckBox IsChecked="{Binding IsSmoothing}"  Content="Сглаживание" FontSize="15" Margin="5 0 0 0"/>
+            <CheckBox IsChecked="{Binding IsClose}" Content="Замкнуть" FontSize="15" Margin="5 5 0 0"/>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Толщина линии" FontSize="15" Margin="5 0 0 2 "/>
+                <TextBox Name="textThickness" Text="{Binding Thickness}" FontSize="15"  Width="50" Margin="20 0 5 0"/>
+            </StackPanel>
+            <Button Name="btnOpenFile" Content="Открыть файл" FontSize="15" Height="25" Margin="5" Click="BtnOpenFile_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Точка вставки" FontSize="15" HorizontalAlignment="Center"/> 
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Координата X" FontSize="15" Width="100" Margin="5 10 0 2 "/>
+                <TextBox Name="textX" Text="{Binding Path=Coords[0].X}" FontSize="15" Width="65" Margin="5 10 0 2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Координата Y" FontSize="15" Width="100" Margin="5 10 0 2 "/>
+                <TextBox  Name="textY" Text="{Binding Path=Coords[0].Y}" FontSize="15" Width="65" Margin="5 10 0 2"/>
+            </StackPanel>
+            <Button Name="btnMouseCoord" Content="Указать мышью -->" FontSize="15" Margin="20 25 20 16" Click="BtnMouseCoord_Click"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5 17 5 0">
+                <Button Name="btnOK" IsEnabled="{Binding IsValid, Mode=OneWay}" Content="OK" FontSize="15" Height="25" Width="60" Margin="5 0 20 0 " Click="BtnOK_Click"/>
+                <Button Name="btnCancel" Content="Отмена" FontSize="15" Height="25" Width="60" Margin="5 0 0 0" Click="BtnCancel_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
